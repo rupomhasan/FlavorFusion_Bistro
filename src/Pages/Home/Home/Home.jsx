@@ -7,7 +7,7 @@ import useMenu from "../../../Hooks/useMenu";
 import SectionTitle from "../../../Components/Shared/Title/SectionTitle";
 import CallUs from "../CallUs";
 import Hero from "../Hero/Hero";
-import Foods from "../../../Components/Shared/Food/Foods";
+import Offered from "../Offered/Offered";
 
 const Home = () => {
   const menus = useMenu();
@@ -24,7 +24,7 @@ const Home = () => {
       <SectionTitle subheading="Check it out" heading="From Our Menu" />
       <MenuCategory items={offer} />
       <CallUs />
-      <Foods items={offer} />
+      <Offered />
       <Hero />
     </div>
   );

@@ -25,7 +25,10 @@ const NavList = () => {
       </li>
       <li>
         <NavLink
-          className={({ isActive }) => (isActive ? "text-yellow-500" : "")}
+          to={`/shop/${"dessert"}`}
+          className={({ isActive }) =>
+            isActive ? "text-yellow-500" : "text-black"
+          }
         >
           OUR SHOP
         </NavLink>
@@ -33,14 +36,18 @@ const NavList = () => {
       <li>
         <NavLink
           to="/contact"
-          className={({ isActive }) => (isActive ? "text-yellow-500" : "")}
+          className={({ isActive }) =>
+            isActive ? "text-yellow-500" : "text-black"
+          }
         >
           CONTACT
         </NavLink>
       </li>
       <li>
         <NavLink
-          className={({ isActive }) => (isActive ? "text-yellow-500" : "")}
+          className={({ isActive }) =>
+            isActive ? "text-yellow-500" : "text-black"
+          }
         >
           DASHBOARD
         </NavLink>

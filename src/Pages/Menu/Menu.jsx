@@ -13,7 +13,7 @@ const Menu = () => {
   const menus = useMenu();
 
   const offer = menus.filter((items) => items.category === "offered");
-  const desert = menus.filter((items) => items.category === "desert");
+  const desert = menus.filter((items) => items.category === "dessert");
   const salad = menus.filter((items) => items.category === "salad");
   const soup = menus.filter((items) => items.category === "soup");
   const pizza = menus.filter((items) => items.category === "pizza");
@@ -40,7 +40,7 @@ const Menu = () => {
           title="deserts"
           img={dessertBanner}
         />
-        <MenuCategory items={desert} title="desert" />
+        <MenuCategory items={desert} title="dessert" />
       </div>
       {/* Pizza */}
       <div className="space-y-12 mt-20">

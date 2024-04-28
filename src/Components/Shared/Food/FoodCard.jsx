@@ -2,7 +2,6 @@ import Button from "../Menu/Button/Button";
 
 const FoodCard = ({ item }) => {
   const { image, name, recipe, price } = item;
-  console.log(item);
   return (
     <div className="card card-compact bg-base-100 shadow-xl">
       <figure className="relative">
