@@ -4,7 +4,7 @@ import { FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className="mt-10">
       <div className=" md:grid md:grid-cols-2   justify-evenly  text-white">
         <div className="bg-[#1f2937] flex p-10 justify-center  ">
           <div className="w-fit ">
@@ -27,8 +27,8 @@ const Footer = () => {
                 <FaFacebookF />
                 <FaInstagram />
               </div>
-      </div>
-    </div>
+            </div>
+          </div>
         </nav>
       </div>
       <div className="footer footer-center text-white p-4  bg-[#151515]">

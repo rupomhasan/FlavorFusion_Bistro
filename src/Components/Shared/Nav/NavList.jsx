@@ -5,13 +5,34 @@ const NavList = () => {
     <>
       <li>
         <NavLink
-          className={({ isActive }) => (isActive ? "text-yellow-500" : "")}
+          to="/"
+          className={({ isActive }) =>
+            isActive ? "text-yellow-500" : "text-black"
+          }
         >
           HOME
         </NavLink>
       </li>
       <li>
         <NavLink
+          to="/menu"
+          className={({ isActive }) =>
+            isActive ? "text-yellow-500" : "text-black"
+          }
+        >
+          OUR MENU
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          className={({ isActive }) => (isActive ? "text-yellow-500" : "")}
+        >
+          OUR SHOP
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/contact"
           className={({ isActive }) => (isActive ? "text-yellow-500" : "")}
         >
           CONTACT
@@ -22,20 +43,6 @@ const NavList = () => {
           className={({ isActive }) => (isActive ? "text-yellow-500" : "")}
         >
           DASHBOARD
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          className={({ isActive }) => (isActive ? "text-yellow-500" : "")}
-        >
-          OUR MENU
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          className={({ isActive }) => (isActive ? "text-yellow-500" : "")}
-        >
-          OUR SHOP
         </NavLink>
       </li>
     </>

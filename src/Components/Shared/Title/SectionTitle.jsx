@@ -1,6 +1,6 @@
 const SectionTitle = ({ subheading, heading }) => {
   return (
-    <div className="my-10">
+    <div className="my-10 uppercase">
       <p className="text-yellow-500 text-xl text-center font-bold">
         - - - {subheading} - - -
       </p>
