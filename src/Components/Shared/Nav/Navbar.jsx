@@ -42,7 +42,9 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end gap-2 ">
-          <button className="text-xl font-bold ">SIGN OUT </button>
+          <Link to="/login" className="text-xl font-bold ">
+            Login
+          </Link>
           <div>
             <FaUserCircle className="text-2xl" />
           </div>

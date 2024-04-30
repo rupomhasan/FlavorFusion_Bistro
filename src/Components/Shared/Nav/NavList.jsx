@@ -1,3 +1,6 @@
+import { BiHome, BiMenu } from "react-icons/bi";
+import { GrContactInfo } from "react-icons/gr";
+import { MdContactPage, MdDashboard, MdShop, MdShop2 } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 
 const NavList = () => {
@@ -10,7 +13,7 @@ const NavList = () => {
             isActive ? "text-yellow-500" : "text-black"
           }
         >
-          HOME
+          <BiHome /> HOME
         </NavLink>
       </li>
       <li>
@@ -20,7 +23,7 @@ const NavList = () => {
             isActive ? "text-yellow-500" : "text-black"
           }
         >
-          OUR MENU
+          <BiMenu /> OUR MENU
         </NavLink>
       </li>
       <li>
@@ -30,7 +33,7 @@ const NavList = () => {
             isActive ? "text-yellow-500" : "text-black"
           }
         >
-          OUR SHOP
+          <MdShop2 /> OUR SHOP
         </NavLink>
       </li>
       <li>
@@ -40,7 +43,7 @@ const NavList = () => {
             isActive ? "text-yellow-500" : "text-black"
           }
         >
-          CONTACT
+          <GrContactInfo /> CONTACT
         </NavLink>
       </li>
       <li>
@@ -49,7 +52,7 @@ const NavList = () => {
             isActive ? "text-yellow-500" : "text-black"
           }
         >
-          DASHBOARD
+          <MdDashboard /> DASHBOARD
         </NavLink>
       </li>
     </>

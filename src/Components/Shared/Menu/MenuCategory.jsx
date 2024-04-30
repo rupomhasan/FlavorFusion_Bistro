@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import useMenu from "../../../Hooks/useMenu";
-import SectionTitle from "../Title/SectionTitle";
+
 import Button from "./Button/Button";
 import MenuItem from "./MenuItem";
 
@@ -13,7 +12,7 @@ const MenuCategory = ({ items, title }) => {
           <MenuItem key={idx} item={item} />
         ))}
       </div>
-      <Link to={`/shop/${title}`}>
+      <Link to={`/menu`}>
         <Button>View Full Menu</Button>
       </Link>
     </div>
