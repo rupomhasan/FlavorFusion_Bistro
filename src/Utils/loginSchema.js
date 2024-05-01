@@ -10,7 +10,7 @@ export const loginSchema = yup.object().shape({
     .min(6)
     .matches(passwordRules, {
       message:
-        "Please create a strong password with one lowercase , uppercase , number and specialChar",
+        "Please create a strong password with one  uppercase ,lowercase , number and specialChar",
     })
     .required("Required"),
 });

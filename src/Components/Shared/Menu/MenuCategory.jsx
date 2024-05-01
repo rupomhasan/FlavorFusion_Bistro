@@ -4,7 +4,6 @@ import Button from "./Button/Button";
 import MenuItem from "./MenuItem";
 
 const MenuCategory = ({ items, title }) => {
-  console.log(title);
   return (
     <div>
       <div className="grid md:grid-cols-2 gap-5 max-w-screen-lg mx-auto ">
@@ -12,7 +11,7 @@ const MenuCategory = ({ items, title }) => {
           <MenuItem key={idx} item={item} />
         ))}
       </div>
-      <Link to={`/menu`}>
+      <Link to={`/shop/${title}`}>
         <Button>View Full Menu</Button>
       </Link>
     </div>

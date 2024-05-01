@@ -5,6 +5,7 @@ import Order from "./Order";
 
 const OurShop = () => {
   const { category } = useParams();
+  
   return (
     <div>
       <Cover

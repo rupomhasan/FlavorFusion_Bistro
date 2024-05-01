@@ -1,10 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Social from "../../Components/Shared/SocialAuthentication/Social";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../../Utils/loginSchema";
+import useAuth from "../../Hooks/useAuth";
+import { updateProfile } from "firebase/auth";
+import { auth } from "../../config/firebaseConfig";
+import Swal from "sweetalert2";
 
 const Register = () => {
+  const { createUser } = useAuth();
   const {
     handleSubmit,
     register,
@@ -13,11 +18,40 @@ const Register = () => {
   } = useForm({
     resolver: yupResolver(loginSchema),
   });
+  const navigation = useNavigate();
+  const location = useLocation();
+  console.log(location);
 
   const onSubmit = (data) => {
-    console.log(data);
+    const { email, name, password } = data;
+    console.log(email, name, password);
+    createUser(email, password).then((res) => {
+      console.log(res);
+      if (res);
+      {
+        updateProfile(auth.currentUser, {
+          displayName: name,
+        }).then(() => {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            },
+          });
+          Toast.fire({
+            icon: "success",
+            title: "Signed Up successfully",
+          });
+          navigation("/");
+        });
+      }
+    });
   };
-  console.log(useForm);
   return (
     <div className="bg-[url('/src/assets/reservation/wood-grain-pattern-gray1x.png')] bg-cover">
       <div className="hero min-h-screen ">
@@ -42,9 +76,7 @@ const Register = () => {
                   {...register("name", { required: true })}
                   required
                 />
-                {errors.name && (
-                  <span className="text-red-500">This field is required</span>
-                )}
+                {errors.name && <span className="text-red-500">Required</span>}
               </div>
               <div className="form-control space-y-1">
                 <label>

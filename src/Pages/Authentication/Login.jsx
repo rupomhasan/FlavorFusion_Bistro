@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Social from "../../Components/Shared/SocialAuthentication/Social";
 import { useFormik } from "formik";
 import {
@@ -8,46 +8,59 @@ import {
 } from "react-simple-captcha";
 import { useEffect, useState } from "react";
 import { loginSchema } from "../../Utils/loginSchema";
+import toast from "react-hot-toast";
+import useAuth from "../../Hooks/useAuth";
 
 const Login = () => {
-  const [disable, setDisable] = useState(true);
-
+  const location = useLocation();
+  const navigation = useNavigate();
+  console.log(location);
+  const [errMessage, setErrMessage] = useState(null);
+  const { loginUser } = useAuth();
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
-  const handleValidateCaptchaValue = (e) => {
-    const value = e.target.value;
 
-    if (validateCaptcha(value) == true) {
-      setDisable(false);
-    } else {
-      setDisable(true);
+  const onSubmit = async (values, actions) => {
+    try {
+      const { email, password, validate } = values;
+      if (validateCaptcha(validate) == true) {
+        const toastId = toast.loading("Logging in...");
+        setErrMessage(null);
+        loginUser(email, password)
+          .then(async (userCredential) => {
+            console.log(userCredential);
+            await new Promise((resolved) => setTimeout(resolved, 1000));
+            actions.resetForm();
+            navigation(
+              location.state.form.pathname ? location.state.form.pathname : "/"
+            );
+            loadCaptchaEnginge(6);
+            toast.success("Logged In...", { id: toastId });
+          })
+
+          .catch((err) => {
+            toast.error(err.message, { id: toastId });
+            console.log(err.message);
+          });
+      } else {
+        setErrMessage("didn't matched");
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
 
-  const onSubmit = async (values, actions) => {
-    console.log(values);
-    console.log(actions);
-    await new Promise((resolved) => setTimeout(resolved, 1000));
-    actions.resetForm();
-  };
-
-  const {
-    handleBlur,
-    handleChange,
-    handleSubmit,
-    values,
-    isSubmitting,
-    touched,
-    errors,
-  } = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-    },
-    validationSchema: loginSchema,
-    onSubmit,
-  });
+  const { handleBlur, handleChange, handleSubmit, values, touched, errors } =
+    useFormik({
+      initialValues: {
+        email: "",
+        password: "",
+        validate: "",
+      },
+      validationSchema: loginSchema,
+      onSubmit,
+    });
 
   return (
     <div className="bg-[url('/src/assets/reservation/wood-grain-pattern-gray1x.png')] bg-cover">
@@ -109,15 +122,19 @@ const Login = () => {
                 </label>
                 <input
                   type="text"
+                  id="validate"
+                  value={values.validate}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                   placeholder="Type here"
                   className="input input-bordered w-full mt-3"
-                  onBlur={handleValidateCaptchaValue}
                   required
                 />
+                {errMessage && <p className="text-red-500">{errMessage}</p>}
               </div>
               <div className="form-control mt-6">
                 <button
-                  disabled={disable && errors}
+                  // disabled={disable && errors}
                   type="submit"
                   className="btn bg-[#d1a054] hover:bg-[#c28325] uppercase text-xl font-extrabold text-white"
                 >
